@@ -10,7 +10,8 @@
             <div class="form-wrapper">
                 <!-- 表单头部tab -->
                 <el-row type="flex" justify="center" class="tabs">
-                    <span :class="{active: currentTab === index}" 
+                    <span 
+                    :class="{active: currentTab === index}" 
                     v-for="(item, index) in [`登录`, `注册`]"
                     :key="index" 
                     @click="handleChangeTab(index)">
@@ -22,25 +23,33 @@
                 <LoginForm v-if="currentTab == 0"/>
 
                 <!-- 注册功能组件 -->
-                <!-- <RegisterForm v-if="currentTab == 1"/> -->
+                <RegisterForm v-if="currentTab == 1"/>
             </div>
         </el-row>
     </div>
 </template>
 
 <script>
-import LoginForm from "@/components/user/loginForm.vue"
+
+import LoginForm from "@/components/user/loginForm"
+import RegisterForm from "@/components/user/registerForm"
+
 export default {
     data(){
         return {
-            currentTab: 0
+            currentTab: 0 
         }
     },
+
     components: {
-        LoginForm
+        LoginForm,
+        RegisterForm
     },
+
     methods: {
         handleChangeTab(index){
+            console.log(index, '切换tab');
+            
             this.currentTab = index;
         },
     }
